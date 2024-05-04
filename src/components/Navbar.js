@@ -1,5 +1,6 @@
 "use client";
 
+import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
@@ -33,12 +34,21 @@ const Navbar = () => {
           </span>
         </Link>
       </div>
-
+      <div className="hidden md:flex">
+        <button>
+          <a href="https://github.com/FarisKarim" rel="noopener noreferrer" target="_blank" >
+          <FaGithub size={28} />
+          </a>
+        </button>
+      </div>
       {/* MENU */}
       <div className="md:hidden">
         {/* Menu Button */}
 
-        <button onClick={() => setOpen(!open)} className="flex flex-col gap-1.5 z-50 relative">
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex flex-col gap-1.5 z-50 relative"
+        >
           <div className="w-10 h-1 bg-red-600 rounded"></div>
           <div className="w-10 h-1 bg-blue-300 rounded"></div>
           <div className="w-10 h-1 bg-red-600 rounded"></div>
