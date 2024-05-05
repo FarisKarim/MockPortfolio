@@ -1,9 +1,17 @@
 "use client";
 
-import { FaGithub } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagramSquare,
+  FaFacebook,
+  FaPinterest,
+} from "react-icons/fa";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
+import NavLink from "./NavLink";
+
 const links = [
   { url: "/", title: "Home" },
   { url: "/about", title: "About" },
@@ -11,21 +19,28 @@ const links = [
   { url: "/contact", title: "Contact" },
 ];
 
+const socialLinks = [
+  { url: "https://github.com/FarisKarim", Icon: FaGithub },
+  { url: "https://linkedin.com/in/faristkarim", Icon: FaLinkedin },
+  { url: "https://instagram.com", Icon: FaInstagramSquare },
+  { url: "https://facebook.com", Icon: FaFacebook },
+  { url: "https://pinterest.com", Icon: FaPinterest },
+];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className=" h-full flex justify-between items-center border border-blue-500 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
-      <div className="hidden md:flex gap-4 text-black border border-blue-500">
+    <div className=" h-full flex justify-between items-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-lg">
+      <div className="hidden md:flex gap-4 w-1/3">
         {links.map((link, index) => (
-          <Link key={index} href={link.url}>
-            {link.title}
-          </Link>
+          <NavLink key={index} link={link} />
         ))}
       </div>
-      <div className="md:hidden">
+      {/* LOGO */}
+      <div className="md:hidden lg:flex xl:w-1/3 xl:justify-center">
         <Link
-          href="/about"
+          href="/"
           className="text-sm bg-red-600 rounded-lg p-1 font-semibold flex items-center justify-center"
         >
           <span className="text-white mr-2">Faris</span>
@@ -34,12 +49,19 @@ const Navbar = () => {
           </span>
         </Link>
       </div>
-      <div className="hidden md:flex">
-        <button>
-          <a href="https://github.com/FarisKarim" rel="noopener noreferrer" target="_blank" >
-          <FaGithub size={28} />
+      <div className="hidden md:flex gap-3 w-1/3 justify-center">
+        {/* SOCIAL */}
+        {socialLinks.map((link, index) => (
+          <a
+            key={index}
+            href={link.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <link.Icon size={28} />
           </a>
-        </button>
+        ))}
+        {/* </button> */}
       </div>
       {/* MENU */}
       <div className="md:hidden">
@@ -56,7 +78,7 @@ const Navbar = () => {
 
         {/* Menu */}
         {open && (
-          <div className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col justify-center items-center gap-8 text-4xl">
+          <div className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col justify-center items-center gap-8 text-4xl font-semibold">
             {links.map((link, index) => (
               <Link key={index} href={link.url}>
                 {link.title}
