@@ -64,15 +64,14 @@ const Navbar = () => {
     opened: {
       x: 0,
       transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const listItemVariants = {
     closed: {
-      x: -10,
+      x: -100,
       opacity: 0,
     },
     opened: {
@@ -120,7 +119,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setOpen(!open)}
-          className="flex flex-col w-10 h-8 justify-between z-50 relative"
+          className="flex flex-col w-10 h-8 justify-between z-39 relative"
         >
           <motion.div
             variants={topVariants}
@@ -141,11 +140,18 @@ const Navbar = () => {
 
         {/* Menu */}
         {open && (
-          <motion.div variants={listVariants} initial="closed" animate="opened" className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col justify-center items-center gap-8 text-4xl font-semibold z-40">
+          <motion.div
+            variants={listVariants}
+            initial="closed"
+            animate="opened"
+            className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col justify-center items-center gap-8 text-4xl font-semibold z-40"
+          >
             {links.map((link, index) => (
-              <Link key={index} href={link.url}>
-                {link.title}
-              </Link>
+              <motion.div variants={listItemVariants}>
+                <Link key={index} href={link.url}>
+                  {link.title}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}
