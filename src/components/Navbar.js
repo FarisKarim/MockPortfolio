@@ -119,7 +119,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setOpen(!open)}
-          className="flex flex-col w-10 h-8 justify-between z-39 relative"
+          className="flex flex-col w-10 h-8 justify-between z-50 relative"
         >
           <motion.div
             variants={topVariants}
